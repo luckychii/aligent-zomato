@@ -4,3 +4,76 @@
     column-count: 3;
 
 }
+
+
+/* filters */
+.filters {
+    font-size: 0.8rem;
+    color: #333;
+}
+.filter_block {
+    margin: 1.5rem 0;
+}
+.filter_heading {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 0.7rem;
+    margin-top: 1rem;
+    margin-bottom: 0.3rem;
+    letter-spacing: 3px;
+}
+
+/* checkmarks */
+.custom-checkbox .custom-control-label::before {
+    border-radius: 0;
+}
+.custom-control-input:checked~.custom-control-label::before {
+    color: #fff;
+    border-color: #50bebf;
+    background-color: #50bebf;
+}
+.custom-control-label {
+    padding-top: 2px;
+}
+
+
+/* range sliders */
+.slider {
+    margin-bottom: 3rem;
+}
+.noUi-marker {
+    display: none;
+}
+.noUi-value {
+    margin-top: -0.8rem;
+}
+.noUi-handle {
+    border: 1px solid #50bebf;
+    border-radius: 50px;
+    background: #FFF;
+    cursor: default;
+    box-shadow: none;
+}
+.noUi-handle:after, .noUi-handle:before {
+    width: 0px;
+}
+.noUi-horizontal {
+    height: 10px;
+}
+.noUi-horizontal .noUi-handle {
+    width: 16px;
+    height: 16px;
+    right: -8px;
+    top: -4px;
+}
+.noUi-target {
+    background: #f1f1f1;
+    border: 1px solid #f1f1f1;
+    box-shadow: none;
+}
+.noUi-connects, .noUi-target {
+    border-radius: 50px;
+}
+#cost_slider .noUi-value:last-child {
+    padding-right: 20px; // hack fix for $$$$ label
+}

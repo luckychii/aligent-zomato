@@ -43,6 +43,13 @@ $cuisines_object = json_decode($get_cuisines); // decode the JSON feed
 $valid_cuisines = array('Cafe Food', 'Coffee and Tea', 'Pizza', 'Fast Food', 'Asian', 'Bakery', 'Italian', 'Sandwich', 'Chinese', 'Pub Food');
 
 
+
+
+//$get_result_list = callAPI('GET','',false);
+//$result_list_object = json_decode($get_result_list); // decode the JSON feed
+
+
+
 ?>
 
 
@@ -66,42 +73,58 @@ $valid_cuisines = array('Cafe Food', 'Coffee and Tea', 'Pizza', 'Fast Food', 'As
         <div class="row filters">
             <div class="col-12 col-md-3">
 
-                <p>Categories</p>
-                <?php
-                foreach($categories_object->categories as $category) {
-                    if (in_array($category->categories->name, $valid_categories)) {
-                        echo "<input type='checkbox' value='". $category->categories->id ."'>". $category->categories->name ."</input><br />";
+                <div class="filter_block">
+                    <p class="filter_heading">Category</p>
+                    <?php
+                    foreach($categories_object->categories as $category) {
+                        if (in_array($category->categories->name, $valid_categories)) { ?>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="category<?= $category->categories->id; ?>">
+                                <label class="custom-control-label" for="category<?= $category->categories->id; ?>"><?= $category->categories->name; ?></label>
+                            </div>
+                            <?php
+                        }
                     }
-                }
-                ?>
+                    ?>
+                </div>
 
             </div>
             <div class="col-12 col-md-6">
 
-                <p>Cuisine</p>
-                <div class="three_columns">
-                <?php
-                foreach($cuisines_object->cuisines as $cuisine) {
-                    if (in_array($cuisine->cuisine->cuisine_name, $valid_cuisines)) {
-                        echo "<input type='checkbox' value='". $cuisine->cuisine->cuisine_id ."'>". $cuisine->cuisine->cuisine_name ."</input><br />";
-                    }
-                }
-                echo "<input type='checkbox' value='Other'>Other</input>";
-                ?>
+                <div class="filter_block">
+                    <p class="filter_heading">Cuisine</p>
+                    <div class="three_columns">
+                        <?php
+                        foreach($cuisines_object->cuisines as $cuisine) {
+                            if (in_array($cuisine->cuisine->cuisine_name, $valid_cuisines)) { ?>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="cuisine<?= $cuisine->cuisine->cuisine_id; ?>">
+                                    <label class="custom-control-label" for="cuisine<?= $cuisine->cuisine->cuisine_id; ?>"><?= $cuisine->cuisine->cuisine_name; ?></label>
+                                </div>
+                                <?php
+                            }
+                        }
+                        ?>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="cuisine110">
+                            <label class="custom-control-label" for="cuisine110">Other</label>
+                        </div>
+                    </div>
                 </div>
 
             </div>
             <div class="col-12 col-md-3">
 
-                <?php //TODO: Rating slider and  Cost slider  ?>
 
-                <p>Rating</p>
-                <div id="rating_slider" class="slider"></div>
-                <input type="hidden" id="rating_range" name="rating_range" value="0,5">
+                <div class="filter_block">
+                    <p class="filter_heading">Rating</p>
+                    <div id="rating_slider" class="slider"></div>
+                    <input type="hidden" id="rating_range" name="rating_range" value="0,5">
 
-                <p>Cost</p>
-                <div id="cost_slider" class="slider"></div>
-                <input type="hidden" id="cost_range" name="cost_range" value="0,3">
+                    <p class="filter_heading">Cost</p>
+                    <div id="cost_slider" class="slider"></div>
+                    <input type="hidden" id="cost_range" name="cost_range" value="0,3">
+                </div>
 
 
             </div>
