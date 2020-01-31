@@ -1,2 +1,0 @@
-# aligent-zomato
-Code challenge
