@@ -2,6 +2,7 @@
 
 // api key: f13cb70db0f35158d3f963a643484b5e
 // Adelaide = city_id 297
+// Adelaide lat lon = 34.9285° S, 138.6007° E
 
 function callAPI($method, $url, $data)
 {
@@ -50,13 +51,18 @@ $valid_cuisines = array('Cafe Food', 'Coffee and Tea', 'Pizza', 'Fast Food', 'As
 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+        <link rel="stylesheet" href="css/nouislider.min.css"> <?php /* nouislider base*/ ?>
+
+        <link rel="stylesheet" href="css/custom.css">
+
+
     </head>
     <body>
 
         <div class="container">
 
             <div class="row filters">
-                <div class="col-12 col-md-4">
+                <div class="col-12 col-md-3">
 
                     <p>Categories</p>
                     <?php
@@ -68,7 +74,7 @@ $valid_cuisines = array('Cafe Food', 'Coffee and Tea', 'Pizza', 'Fast Food', 'As
                     ?>
 
                 </div>
-                <div class="col-12 col-md-8">
+                <div class="col-12 col-md-6">
 
                     <p>Cuisine</p>
                     <?php
@@ -81,9 +87,15 @@ $valid_cuisines = array('Cafe Food', 'Coffee and Tea', 'Pizza', 'Fast Food', 'As
                     ?>
 
                 </div>
-                <div class="col-12 cold-md-4">
+                <div class="col-12 col-md-3">
 
                     <?php //TODO: Rating slider and  Cost slider  ?>
+
+                    <p>Rating</p>
+                    <div id="rating_slider" class="slider"></div>
+
+                    <p>Cost</p>
+                    <div id="cost_slider" class="slider"></div>
 
                 </div>
             </div>
@@ -111,5 +123,51 @@ $valid_cuisines = array('Cafe Food', 'Coffee and Tea', 'Pizza', 'Fast Food', 'As
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+        <script src="js/nouislider.min.js"></script>
+
+        <script>
+            var slider = document.getElementById('rating_slider');
+
+            noUiSlider.create(slider, {
+                start: [0, 5],
+                connect: true,
+                range: {
+                    'min': 0,
+                    'max': 5
+                },
+                step: 1,
+                pips: {
+                    mode: 'range',
+                    stepped: true,
+                    density: -1,
+                }
+            });
+
+            var slider = document.getElementById('cost_slider');
+
+            var pipFormat = {'1':'$', '2':'', '3':'', '4':'$$$$'};
+            noUiSlider.create(slider, {
+                start: [1, 4],
+                connect: true,
+                range: {
+                    'min': 1,
+                    'max': 4
+                },
+                step: 1,
+                pips: {
+                    mode: 'range',
+                    stepped: true,
+                    density: -1,
+                    format: {
+                        to: function(pip){
+                            return pipFormat[pip];
+                        }
+                    }
+                }
+            });
+
+        </script>
     </body>
 </html>
