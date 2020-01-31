@@ -26,6 +26,7 @@ noUiSlider.create(ratingSlider, {
 });
 ratingSlider.noUiSlider.on('set.one', function () {
     document.getElementById('rating_range').value = ratingSlider.noUiSlider.get();
+    updateResults();
 });
 
 
@@ -60,4 +61,41 @@ noUiSlider.create(costSlider, {
 });
 costSlider.noUiSlider.on('set.one', function () {
     document.getElementById('cost_range').value = costSlider.noUiSlider.get();
+    updateResults();
 });
+
+
+
+$( "#filters input[type='checkbox']" ).on( "click", function(){
+    if ($(this).prop('checked')){
+        $(this).attr('value', 1);
+    } else {
+        $(this).attr('value', 0);
+    }
+});
+
+//ajax call for filter update
+$("#filters :input").change(function(){
+    updateResults();
+});
+
+function updateResults() {
+    $.ajax({
+        type: "POST",
+        data: $("#filters").serialize(),
+        url: "/results.php", success: function(result){
+            $("#results").html(result);
+        }
+    });
+}
+
+function updateSelected(restaurant_id) {
+    event.preventDefault();
+    $.ajax({
+        type: "POST",
+        data: "restaurant_id="+restaurant_id,
+        url: "/selected.php", success: function(result){
+            $("#selected").html(result);
+        }
+    });
+}
