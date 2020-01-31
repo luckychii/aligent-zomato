@@ -46,128 +46,91 @@ $valid_cuisines = array('Cafe Food', 'Coffee and Tea', 'Pizza', 'Fast Food', 'As
 ?>
 
 
-<html>
-    <head>
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/nouislider.min.css">
 
-        <link rel="stylesheet" href="css/nouislider.min.css"> <?php /* nouislider base*/ ?>
+    <link rel="stylesheet" href="css/custom.css">
 
-        <link rel="stylesheet" href="css/custom.css">
+</head>
+<body>
 
+    <div class="container">
 
-    </head>
-    <body>
+        <div class="row filters">
+            <div class="col-12 col-md-3">
 
-        <div class="container">
-
-            <div class="row filters">
-                <div class="col-12 col-md-3">
-
-                    <p>Categories</p>
-                    <?php
-                    foreach($categories_object->categories as $category) {
-                        if (in_array($category->categories->name, $valid_categories)) {
-                            echo "<input type='checkbox' value='". $category->categories->id ."'>". $category->categories->name ."</input><br />";
-                        }
+                <p>Categories</p>
+                <?php
+                foreach($categories_object->categories as $category) {
+                    if (in_array($category->categories->name, $valid_categories)) {
+                        echo "<input type='checkbox' value='". $category->categories->id ."'>". $category->categories->name ."</input><br />";
                     }
-                    ?>
+                }
+                ?>
 
-                </div>
-                <div class="col-12 col-md-6">
+            </div>
+            <div class="col-12 col-md-6">
 
-                    <p>Cuisine</p>
-                    <?php
-                    foreach($cuisines_object->cuisines as $cuisine) {
-                        if (in_array($cuisine->cuisine->cuisine_name, $valid_cuisines)) {
-                            echo "<input type='checkbox' value='". $cuisine->cuisine->cuisine_id ."'>". $cuisine->cuisine->cuisine_name ."</input><br />";
-                        }
+                <p>Cuisine</p>
+                <div class="three_columns">
+                <?php
+                foreach($cuisines_object->cuisines as $cuisine) {
+                    if (in_array($cuisine->cuisine->cuisine_name, $valid_cuisines)) {
+                        echo "<input type='checkbox' value='". $cuisine->cuisine->cuisine_id ."'>". $cuisine->cuisine->cuisine_name ."</input><br />";
                     }
-                    echo "<input type='checkbox' value='Other'>Other</input>";
-                    ?>
-
+                }
+                echo "<input type='checkbox' value='Other'>Other</input>";
+                ?>
                 </div>
-                <div class="col-12 col-md-3">
 
-                    <?php //TODO: Rating slider and  Cost slider  ?>
-
-                    <p>Rating</p>
-                    <div id="rating_slider" class="slider"></div>
-
-                    <p>Cost</p>
-                    <div id="cost_slider" class="slider"></div>
-
-                </div>
             </div>
+            <div class="col-12 col-md-3">
 
-            <div class="row bg-light">
-                <div class="col-12 col-md-4">
+                <?php //TODO: Rating slider and  Cost slider  ?>
 
-                    <?php //TODO: Results list of restaurants ?>
-                    <p>Results</p>
+                <p>Rating</p>
+                <div id="rating_slider" class="slider"></div>
+                <input type="hidden" id="rating_range" name="rating_range" value="0,5">
 
-                </div>
-                <div class="col-12 col-md-8">
+                <p>Cost</p>
+                <div id="cost_slider" class="slider"></div>
+                <input type="hidden" id="cost_range" name="cost_range" value="0,3">
 
-                    <?php //TODO: Details of selected restaurant ?>
-                    <p>Selected</p>
 
-                </div>
             </div>
-
         </div>
 
+        <div class="row bg-light">
+            <div class="col-12 col-md-4">
+
+                <?php //TODO: Results list of restaurants ?>
+                <p>Results</p>
+
+            </div>
+            <div class="col-12 col-md-8">
+
+                <?php //TODO: Details of selected restaurant ?>
+                <p>Selected</p>
+
+            </div>
+        </div>
+
+    </div>
 
 
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="js/nouislider.min.js"></script>
+    <script src="js/custom.js"></script>
 
-
-        <script src="js/nouislider.min.js"></script>
-
-        <script>
-            var slider = document.getElementById('rating_slider');
-
-            noUiSlider.create(slider, {
-                start: [0, 5],
-                connect: true,
-                range: {
-                    'min': 0,
-                    'max': 5
-                },
-                step: 1,
-                pips: {
-                    mode: 'range',
-                    stepped: true,
-                    density: -1,
-                }
-            });
-
-            var slider = document.getElementById('cost_slider');
-
-            var pipFormat = {'1':'$', '2':'', '3':'', '4':'$$$$'};
-            noUiSlider.create(slider, {
-                start: [1, 4],
-                connect: true,
-                range: {
-                    'min': 1,
-                    'max': 4
-                },
-                step: 1,
-                pips: {
-                    mode: 'range',
-                    stepped: true,
-                    density: -1,
-                    format: {
-                        to: function(pip){
-                            return pipFormat[pip];
-                        }
-                    }
-                }
-            });
-
-        </script>
-    </body>
+</body>
 </html>
