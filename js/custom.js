@@ -80,22 +80,26 @@ $("#filters :input").change(function(){
 });
 
 function updateResults() {
+    $(".loading").css('display','block');
     $.ajax({
         type: "POST",
         data: $("#filters").serialize(),
         url: "/results.php", success: function(result){
             $("#results").html(result);
+            $(".loading").css('display','none');
         }
     });
 }
 
 function updateSelected(restaurant_id) {
     event.preventDefault();
+    $(".loading").css('display','block');
     $.ajax({
         type: "POST",
         data: "restaurant_id="+restaurant_id,
         url: "/selected.php", success: function(result){
             $("#selected").html(result);
+            $(".loading").css('display','none');
         }
     });
 }
