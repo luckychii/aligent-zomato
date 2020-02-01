@@ -34,12 +34,27 @@ $filter_url = $city_filter."&count=20".$category_filter.$cuisines_filter.$sort_f
 $get_result = callAPI('GET', $filter_url, false);
 $result_object = json_decode($get_result); // decode the JSON feed
 
+// handle if API limit is exceeded
+if (isset($result_object->code) && $result_object->code == "440") {
+    echo $result_object->message;
+} else {
+
+    ?>
 
 
-foreach($result_object->restaurants as $restaurant) { ?>
-    <p><a href="" onclick="updateSelected(<?=$restaurant->restaurant->id;?>)"><?=$restaurant->restaurant->name;?></a></p>
-<?php
+    <p class="result_heading px-md-3 py-md-2">Results</p>
+    <div class="max-height mb-3">
+        <ul class="nav flex-column">
+            <?php
+            foreach ($result_object->restaurants as $restaurant) { ?>
+                <a href="" onclick="event.preventDefault();updateSelected(<?= $restaurant->restaurant->id; ?>)">
+                    <li class="nav-item border-bottom px-3 py-2"><?= $restaurant->restaurant->name; ?></li>
+                </a>
+                <?php
+            }
+            ?>
+        </ul>
+    </div>
+
+    <?php
 }
-
-
-?>

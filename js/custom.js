@@ -1,4 +1,7 @@
-
+$(document).ready(function() {
+    updateResults();
+    updateSelected("17841277");
+});
 
 //Initialise NoUISliders
 var ratingSlider = document.getElementById('rating_slider');
@@ -80,22 +83,30 @@ $("#filters :input").change(function(){
 });
 
 function updateResults() {
+    $(".loading").css('display','block');
     $.ajax({
         type: "POST",
         data: $("#filters").serialize(),
         url: "/results.php", success: function(result){
             $("#results").html(result);
+            $(".loading").css('display','none');
+            $('.nav a').click(function () {
+                $('.nav a.active').removeClass('active');
+                $(this).addClass('active');
+            });
         }
     });
 }
 
 function updateSelected(restaurant_id) {
-    event.preventDefault();
+    $(".loading").css('display','block');
     $.ajax({
         type: "POST",
         data: "restaurant_id="+restaurant_id,
         url: "/selected.php", success: function(result){
             $("#selected").html(result);
+            $(".loading").css('display','none');
         }
     });
 }
+

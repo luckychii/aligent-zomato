@@ -99,21 +99,29 @@ $valid_cuisines = array('Cafe Food', 'Coffee and Tea', 'Pizza', 'Fast Food', 'As
         </form>
 
         <div class="row bg-light">
-            <div class="col-12 col-md-4">
+            <div class="col-12 col-md-3 p-md-0">
 
-                <?php //TODO: Results list of restaurants ?>
-                <p>Results</p>
                 <div id="results"></div>
 
             </div>
-            <div class="col-12 col-md-8">
+            <div class="col-12 col-md-9">
 
-                <?php //TODO: Details of selected restaurant ?>
                 <div id="selected"></div>
 
             </div>
         </div>
 
+    </div>
+
+    <div class="loading">
+        <div class="loading-container">
+            <div class="d-flex  my-2 mx-3">
+                <div class="spinner-border m-2" role="status"></div>
+                <div class="loading-text m-2 align-self-center">
+                    Loading...
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
