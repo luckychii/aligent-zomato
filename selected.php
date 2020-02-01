@@ -9,8 +9,8 @@ $selected_object = json_decode($get_selected); // decode the JSON feed
 
 
 // handle if API limit is exceeded
-if (isset($result_object->code) && $result_object->code == "440") {
-    echo $result_object->message;
+if (isset($selected_object->code) && $selected_object->code == "440") {
+    echo $selected_object->message;
 } else {
 
     ?>

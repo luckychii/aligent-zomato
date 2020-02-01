@@ -87,6 +87,10 @@ function updateResults() {
         url: "/results.php", success: function(result){
             $("#results").html(result);
             $(".loading").css('display','none');
+            $('.nav a').click(function () {
+                $('.nav a.active').removeClass('active');
+                $(this).addClass('active');
+            });
         }
     });
 }
@@ -103,3 +107,4 @@ function updateSelected(restaurant_id) {
         }
     });
 }
+

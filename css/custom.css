@@ -18,6 +18,7 @@ body {
     font-weight: bold;
 }
 
+/* results nav */
 .max-height {
     height: 450px;
     overflow: scroll;
@@ -28,6 +29,15 @@ body {
         height: 200px;
     }
 }
+.nav a {
+    color: #333;
+    text-decoration: none;
+}
+.nav a.active li {
+    background-color: #50bebf;
+    color: #fff;
+}
+
 
 /* filters */
 .filters {
