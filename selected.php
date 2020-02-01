@@ -24,15 +24,15 @@ if (isset($selected_object->code) && $selected_object->code == "440") {
 
             <?php
             if ($selected_object->has_table_booking == 1) {
-                echo "<p class='small mb-0'><span class='unicode_icon text-success'>&#10004;&#xFE0E;</span> Bookings available</p>";
+                echo "<p class='small mb-0 d-flex align-items-center'><span class='unicode_icon text-success pr-1'>&#10004;&#xFE0E;</span> Bookings available</p>";
             } else {
-                echo "<p class='small mb-0'><span class='unicode_icon text-danger'>&#10006;&#xFE0E;</span> No Bookings</p>";
+                echo "<p class='small mb-0 d-flex align-items-center'><span class='unicode_icon text-danger pr-1'>&#10006;&#xFE0E;</span> No Bookings</p>";
             }
 
             if ($selected_object->has_online_delivery == 1) {
-                echo "<p class='small mb-0'><span class='unicode_icon text-success'>&#10004;&#xFE0E;</span> Delivery available</p>";
+                echo "<p class='small mb-0 d-flex align-items-center'><span class='unicode_icon text-success pr-1'>&#10004;&#xFE0E;</span> Delivery available</p>";
             } else {
-                echo "<p class='small mb-0'><span class='unicode_icon text-danger'>&#10006;&#xFE0E;</span> No Delivery</p>";
+                echo "<p class='small mb-0 d-flex align-items-center'><span class='unicode_icon text-danger pr-1'>&#10006;&#xFE0E;</span> No Delivery</p>";
             }
             ?>
 

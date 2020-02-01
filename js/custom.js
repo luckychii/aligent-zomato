@@ -1,4 +1,7 @@
-
+$(document).ready(function() {
+    updateResults();
+    updateSelected("17841277");
+});
 
 //Initialise NoUISliders
 var ratingSlider = document.getElementById('rating_slider');
@@ -96,7 +99,6 @@ function updateResults() {
 }
 
 function updateSelected(restaurant_id) {
-    event.preventDefault();
     $(".loading").css('display','block');
     $.ajax({
         type: "POST",

@@ -47,7 +47,7 @@ if (isset($result_object->code) && $result_object->code == "440") {
         <ul class="nav flex-column">
             <?php
             foreach ($result_object->restaurants as $restaurant) { ?>
-                <a href="" onclick="updateSelected(<?= $restaurant->restaurant->id; ?>)">
+                <a href="" onclick="event.preventDefault();updateSelected(<?= $restaurant->restaurant->id; ?>)">
                     <li class="nav-item border-bottom px-3 py-2"><?= $restaurant->restaurant->name; ?></li>
                 </a>
                 <?php
