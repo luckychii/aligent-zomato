@@ -23,6 +23,10 @@ if (isset($selected_object->code) && $selected_object->code == "440") {
             <p class="small"><?= $selected_object->location->address; ?></p>
 
             <?php
+            // the two unicode here are the tick/cross and then the unicode variant selector
+            // to tell it to use the text rendering (not emoji rendering) of the character
+            // it means there is no image to be loaded from the server which is a great trick
+            // to reduce server calls for simple graphics with unicode equivalents
             if ($selected_object->has_table_booking == 1) {
                 echo "<p class='small mb-0 d-flex align-items-center'><span class='unicode_icon text-success pr-1'>&#10004;&#xFE0E;</span> Bookings available</p>";
             } else {
